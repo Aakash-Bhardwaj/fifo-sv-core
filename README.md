@@ -27,18 +27,18 @@ This project emphasizes correctness, modularity, parameterization, and reproduci
 
 ### Version 1
 
-* [ ] Parameterized data width
-* [ ] Parameterized FIFO depth
-* [ ] Standard synchronous FIFO
-* [ ] Optional First-Word Fall-Through (FWFT) mode
-* [ ] Full flag
-* [ ] Empty flag
-* [ ] Programmable Almost Full flag
-* [ ] Programmable Almost Empty flag
-* [ ] Occupancy counter
-* [ ] Overflow pulse
-* [ ] Underflow pulse
-* [ ] Support for arbitrary positive FIFO depths
+* [x] Parameterized data width
+* [x] Parameterized FIFO depth
+* [x] Standard synchronous FIFO
+* [x] Optional First-Word Fall-Through (FWFT) mode
+* [x] Full flag
+* [x] Empty flag
+* [x] Programmable Almost Full flag
+* [x] Programmable Almost Empty flag
+* [x] Occupancy counter
+* [x] Overflow pulse
+* [x] Underflow pulse
+* [x] Support for arbitrary positive FIFO depths
 
 ### Future Enhancements
 
@@ -75,10 +75,10 @@ The project documentation is organized into the following documents.
 
 | Document                                      | Description                                                                                         |
 | --------------------------------------------- | --------------------------------------------------------------------------------------------------- |
-| **Specification** (`docs/specification.md`)   | Functional requirements, timing requirements, reset behaviour, assumptions and future enhancements. |
-| **Architecture** (`docs/architecture.md`)     | Design philosophy, module hierarchy and architectural organization.                                 |
-| **Implementation** (`docs/implementation.md`) | RTL implementation details, algorithms, synthesis and design decisions.                             |
-| **Verification** (`docs/verification.md`)     | Verification methodology, test plan, assertions and timing validation.                              |
+| [Specification](docs/specification.md)   | Functional requirements, timing requirements, reset behaviour, assumptions and future enhancements. |
+| [Architecture](docs/architecture.md)     | Design philosophy, module hierarchy and architectural organization.                                 |
+| [Implementation](docs/implementation.md) | RTL implementation details, algorithms, synthesis and design decisions.                             |
+| [Verification](docs/verification.md)     | Verification methodology, test plan, assertions and timing validation.                              |
 
 ---
 
@@ -122,9 +122,9 @@ Documentation
 
 * [x] Repository initialized
 * [x] Design specification
-* [ ] Architecture
-* [ ] RTL implementation
-* [ ] Self-checking verification
+* [x] Architecture
+* [x] RTL implementation
+* [x] Self-checking verification
 * [ ] Immediate assertions
 * [ ] Generic synthesis
 * [ ] Sky130 technology mapping
