@@ -1,0 +1,97 @@
+OpenSTA 2.0.17 GITDIR-NOT Copyright (c) 2019, Parallax Software, Inc.
+License GPLv3: GNU GPL version 3 <http://gnu.org/licenses/gpl.html>
+
+This is free software, and you are free to change and redistribute it
+under certain conditions; type `show_copying' for details. 
+This program comes with ABSOLUTELY NO WARRANTY; for details type `show_warranty'.
+Warning: fifo.sdc, 7 set_input_delay relative to a clock defined on the same port/pin not allowed.
+
+============ SETUP PATHS ==============
+Startpoint: _760_ (rising edge-triggered flip-flop clocked by clk)
+Endpoint: rd_data[4] (output port clocked by clk)
+Path Group: clk
+Path Type: max
+
+Fanout      Cap     Slew    Delay     Time   Description
+--------------------------------------------------------------------------------
+                  0.000    0.000    0.000   clock clk (rise edge)
+                           0.000    0.000   clock network delay (ideal)
+                  0.000    0.000    0.000 ^ _760_/CLK (sky130_fd_sc_hdll__dfrtp_1)
+                  6.721    3.388    3.388 ^ _760_/Q (sky130_fd_sc_hdll__dfrtp_1)
+   78    0.481                              _000_[2] (net)
+                  6.721    0.003    3.392 ^ _654_/S (sky130_fd_sc_hdll__mux2i_1)
+                  1.631    1.146    4.538 v _654_/Y (sky130_fd_sc_hdll__mux2i_1)
+    1    0.024                              _295_ (net)
+                  1.634    0.042    4.580 v _655_/B (sky130_fd_sc_hdll__nand2_12)
+                  0.281    0.418    4.998 ^ _655_/Y (sky130_fd_sc_hdll__nand2_12)
+    1    0.003                              _296_ (net)
+                  0.281    0.005    5.004 ^ _657_/B1 (sky130_fd_sc_hdll__o211ai_1)
+                  0.626    0.144    5.148 v _657_/Y (sky130_fd_sc_hdll__o211ai_1)
+    1    0.005                              _298_ (net)
+                  0.627    0.009    5.156 v _658_/A2 (sky130_fd_sc_hdll__a21o_6)
+                  0.060    0.461    5.617 v _658_/X (sky130_fd_sc_hdll__a21o_6)
+    1    0.003                              _299_ (net)
+                  0.061    0.004    5.621 v _659_/A2 (sky130_fd_sc_hdll__a21oi_1)
+                  0.115    0.111    5.733 ^ _659_/Y (sky130_fd_sc_hdll__a21oi_1)
+    1    0.000                              rd_data[4] (net)
+                  0.115    0.001    5.733 ^ rd_data[4] (out)
+                                    5.733   data arrival time
+
+                  0.000   20.000   20.000   clock clk (rise edge)
+                           0.000   20.000   clock network delay (ideal)
+                           0.000   20.000   clock reconvergence pessimism
+                           0.000   20.000   output external delay
+                                   20.000   data required time
+--------------------------------------------------------------------------------
+                                   20.000   data required time
+                                   -5.733   data arrival time
+--------------------------------------------------------------------------------
+                                   14.267   slack (MET)
+
+
+
+============= HOLD PATHS ==============
+Startpoint: rd_en (input port clocked by clk)
+Endpoint: underflow (output port clocked by clk)
+Path Group: clk
+Path Type: min
+
+Fanout      Cap     Slew    Delay     Time   Description
+--------------------------------------------------------------------------------
+                  0.000    0.000    0.000   clock clk (rise edge)
+                           0.000    0.000   clock network delay (ideal)
+                           0.000    0.000 v input external delay
+                  0.000    0.000    0.000 v rd_en (in)
+    2    0.029                              rd_en (net)
+                  0.000    0.032    0.032 v _356_/A (sky130_fd_sc_hdll__clkinv_12)
+                  0.030    0.030    0.062 ^ _356_/Y (sky130_fd_sc_hdll__clkinv_12)
+    4    0.011                              _148_ (net)
+                  0.032    0.003    0.065 ^ _564_/B (sky130_fd_sc_hdll__nor3_1)
+                  0.022    0.027    0.092 v _564_/Y (sky130_fd_sc_hdll__nor3_1)
+    1    0.000                              underflow (net)
+                  0.022    0.001    0.093 v underflow (out)
+                                    0.093   data arrival time
+
+                  0.000    0.000    0.000   clock clk (rise edge)
+                           0.000    0.000   clock network delay (ideal)
+                           0.000    0.000   clock reconvergence pessimism
+                           0.000    0.000   output external delay
+                                    0.000   data required time
+--------------------------------------------------------------------------------
+                                    0.000   data required time
+                                   -0.093   data arrival time
+--------------------------------------------------------------------------------
+                                    0.093   slack (MET)
+
+
+
+=========== WORST SLACK ===============
+worst slack 14.27
+
+================ TNS ==================
+tns 0.00
+
+================ wNS ==================
+wns 0.00
+[?2004hOpenSTA> exit
+[?2004lSaving command history
