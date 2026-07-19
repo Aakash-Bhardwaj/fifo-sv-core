@@ -22,14 +22,50 @@ help:
 	@echo "  clean                Remove generated files"
 
 sim:
-	iverilog -g2012 -o sim/sync_fifo rtl/*.sv tb/*.sv
+	iverilog -g2012 -o sim/sync_fifo rtl/*.sv assertions/*.sv tb/*.sv
 	vvp sim/sync_fifo
 
 sim_fwft:
-	iverilog -g2012 -o sim/sync_fifo_fwft -DFWFT_MODE rtl/*.sv tb/*.sv
+	iverilog -g2012 -o sim/sync_fifo_fwft -DFWFT_MODE rtl/*.sv assertions/*.sv tb/*.sv
 	vvp sim/sync_fifo_fwft
 
 sim_all: sim sim_fwft
+
+synth:
+	mkdir -p reports/synthesis
+	yosys -s scripts/synth_standard_fifo.ys | tee reports/synthesis/generic_synthesis_report_standard_fifo.txt
+
+synth_fwft:
+	mkdir -p reports/synthesis
+	yosys -s scripts/synth_fwft_fifo.ys | tee reports/synthesis/generic_synthesis_report_fwft_fifo.txt
+
+synth_all: synth synth_fwft
+
+synth_sky130:
+	mkdir -p reports/synthesis
+	yosys -s scripts/synth_standard_fifo_sky130.ys | tee reports/synthesis/sky130_synthesis_report_standard_fifo.txt
+
+synth_fwft_sky130:
+	mkdir -p reports/synthesis
+	yosys -s scripts/synth_fwft_fifo_sky130.ys | tee reports/synthesis/sky130_synthesis_report_fwft_fifo.txt
+
+synth_all_sky130: synth_sky130 synth_fwft_sky130
+
+timing:
+	mkdir -p reports/timing
+	sta scripts/timing_standard_fifo.tcl | tee reports/timing/opensta_report_standard_fifo.txt
+
+timing_fwft:
+	mkdir -p reports/timing
+	sta scripts/timing_fwft_fifo.tcl | tee reports/timing/opensta_report_fwft_fifo.txt
+
+timing_all: timing timing_fwft
+
+all_standard: sim synth synth_sky130 timing
+
+all_fwft: sim_fwft synth_fwft synth_fwft_sky130 timing_fwft
+
+all: all_standard all_fwft
 
 clean:
 	rm -f simv
