@@ -1,0 +1,23 @@
+# Yosys synthesis script for FWFT Synchronous FIFO
+
+# Read RTL
+read_verilog -sv rtl/sync_fifo.sv
+
+# Set top module
+hierarchy -top sync_fifo -chparam FWFT 1
+
+# Generic synthesis
+proc
+opt
+fsm
+opt
+memory
+opt
+techmap
+opt
+
+# Statistics
+stat
+
+# Write synthesized netlist
+write_verilog reports/fwft_fifo_synth.v

@@ -125,9 +125,9 @@ Documentation
 * [x] Architecture
 * [x] RTL implementation
 * [x] Self-checking verification
-* [ ] Immediate assertions
-* [ ] Generic synthesis
-* [ ] Sky130 technology mapping
+* [x] Immediate assertions
+* [x] Generic synthesis
+* [x] Sky130 technology mapping
 * [ ] Static timing analysis
 
 ---
