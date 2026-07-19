@@ -79,6 +79,26 @@ module tb_sync_fifo;
         .level(level)
     );
 
+    // Assertions
+    sva_sync_fifo #(
+        .DEPTH(DEPTH),
+        .LEVEL_WIDTH(LEVEL_WIDTH),
+        .AFULL_THRESHOLD(AFULL_THRESHOLD),
+        .AEMPTY_THRESHOLD(AEMPTY_THRESHOLD)
+    ) sva (
+        .clk(clk),
+        .rst_n(rst_n),
+        .wr_en(wr_en),
+        .rd_en(rd_en),
+        .full(full),
+        .empty(empty),
+        .almost_full(almost_full),
+        .almost_empty(almost_empty),
+        .overflow(overflow),
+        .underflow(underflow),
+        .level(level)
+    );
+
     // Clock generation
     initial clk = 1'b0;
     always #(CLOCK_PERIOD_NS/2.0) clk = ~clk;
