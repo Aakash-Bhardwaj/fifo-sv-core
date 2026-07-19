@@ -128,13 +128,17 @@ Documentation
 * [x] Immediate assertions
 * [x] Generic synthesis
 * [x] Sky130 technology mapping
-* [ ] Static timing analysis
+* [x] Static timing analysis
 
 ---
 
 ## Results
 
-*Results will be added after RTL implementation, verification, synthesis, and timing analysis have been completed.*
+- Functional verification completed successfully using a self-checking SystemVerilog testbench.
+- Immediate assertions passed.
+- Generic synthesis completed successfully using Yosys.
+- Sky130 HDLL technology-mapped synthesis completed successfully.
+- Static timing analysis completed successfully using OpenSTA with no timing violations.
 
 ---
 

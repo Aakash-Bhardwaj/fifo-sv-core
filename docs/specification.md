@@ -51,9 +51,8 @@ The FIFO SV Core shall:
 * Accept a read operation only when `rd_en` is asserted and the FIFO is not empty.
 * Ignore read requests while the FIFO is empty.
 * During simultaneous read and write requests:
-
-  * If partially filled, perform the read first, then the write, while leaving occupancy unchanged.
-  * If full, perform both operations and remain full.
+  * If partially filled, perform both operations in the same clock cycle, while leaving occupancy unchanged.
+  * If full, ignore the write and perform the read.
   * If empty, ignore the read and perform the write.
 * Assert `empty` whenever no valid entries are stored.
 * Assert `full` whenever no additional entries can be written.
@@ -110,7 +109,8 @@ The FIFO SV Core shall:
 * All sequential logic shall operate on the rising edge of the system clock.
 * All read and write operations shall be synchronous to the system clock.
 * The design shall operate entirely within a single clock domain.
-* Outputs shall change only on clock edges.
+* Registered outputs shall update on the rising edge of the system clock.
+* Combinational outputs shall reflect the current FIFO state without requiring an additional clock edge.
 * No internally generated clocks shall be used.
 
 ---
@@ -128,8 +128,8 @@ Following reset:
 * `full` shall be deasserted.
 * `almost_full` and `almost_empty` shall reflect the reset occupancy.
 * Overflow and underflow outputs shall be deasserted.
-* Output data shall return to its default value.
-* Memory contents are considered invalid until new data is written.
+* Output data shall return to its default value in Standard FIFO mode.
+* In FWFT mode, the output reflects the memory contents. Since the memory array is not reset, its contents are considered invalid until valid data has been written.
 
 ---
 
@@ -157,6 +157,7 @@ The following assumptions apply to Version 1.0:
 * Input control signals are synchronous to the system clock.
 * Only one write request and one read request may occur per clock cycle.
 * Synthesis tools infer an appropriate memory implementation from the RTL.
+* Simultaneous read and write requests are resolved according to the current FIFO state (empty, partially filled, or full).
 
 ---
 
